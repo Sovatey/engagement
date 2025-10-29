@@ -9,10 +9,10 @@ export default function App() {
   return (
     <div className="app-root">
       <HeroSection />
-      <InvitationText />
-      <FloralBackgroundPage/>
+      {/* <InvitationText />
+      <FloralBackgroundPage/> */}
       {/* <Timeline /> */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
