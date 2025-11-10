@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import HeroSection from './components/HeroSection'
 import InvitationText from './components/InvitationText'
-import Timeline from './components/Timeline'
-import Footer from './components/Footer'
-import FloralBackgroundPage from './components/FloralBackgroundPage'
+import './index.css'
 
 export default function App() {
+  const [showInvitation, setShowInvitation] = useState(false)
+
   return (
     <div className="app-root">
-      <HeroSection />
-      {/* <InvitationText />
-      <FloralBackgroundPage/> */}
-      {/* <Timeline /> */}
-      {/* <Footer /> */}
+      {!showInvitation ? (
+        <HeroSection onNext={() => setShowInvitation(true)} />
+      ) : (
+        <InvitationText />
+      )}
     </div>
   )
 }

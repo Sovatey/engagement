@@ -10,6 +10,7 @@ export default function FloralBackgroundPage() {
         <img src={leftImage} alt="left floral" className="flower left" />
         <img src={rightImage} alt="right floral" className="flower right" />
       </div>
+      
     </section>
   )
 }

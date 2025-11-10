@@ -5,8 +5,7 @@ import './HeroSection.css'
 import text from '../assets/text.png'
 import heart from '../assets/heart.gif'
 
-export default function HeroSection() {
-  // Mobile viewport height fix
+export default function HeroSection({ onNext }) {
   useEffect(() => {
     const updateHeight = () => {
       const vh = window.innerHeight * 0.01
@@ -30,7 +29,7 @@ export default function HeroSection() {
       className="hero"
       style={{
         backgroundImage: `url(${bg})`,
-        backgroundSize: 'contain',
+        backgroundSize: 'cover',
         backgroundPosition: 'center top',
         backgroundRepeat: 'no-repeat',
         backgroundColor: '#E8F6FF',
@@ -38,8 +37,7 @@ export default function HeroSection() {
         height: 'calc(var(--vh, 1vh) * 100)',
       }}
     >
-      {/* Falling Hearts (CSS animated only) */}
-     <div className="falling-hearts">
+      <div className="falling-hearts">
         {hearts.map((heart) => (
           <div
             key={heart.id}
@@ -56,18 +54,22 @@ export default function HeroSection() {
         ))}
       </div>
 
-
       <div className="hero-inner">
         <h1 className="title">ពិធីចូលចែចូវ</h1>
 
-        <div className="logo-container">
+        {/* <div className="logo-container">
           <img src={text} alt="Couple Logo" className="couple-logo" />
-        </div>
+        </div> */}
 
         <h1 className="couple-names">
-          ព្រី ណុច <img src={heart} alt="heart" style={{ width: "30px", verticalAlign: "middle" }}/> ហែន សុវត្តី
+          ព្រី ណុច <img src={heart} alt="heart" style={{ width: "30px", verticalAlign: "middle" }} /> ហែន សុវត្តី
         </h1>
 
+          <div className='invitation-text'>
+            <p3>
+              សូមគោរពអញ្ជើញ
+            </p3>
+          </div>
         <div className="guest-box">
           <span className="guest-name">ឡៅ លាងហ្វុង</span>
         </div>
@@ -75,7 +77,16 @@ export default function HeroSection() {
         <div className="cartoon-container">
           <img src={couple} alt="Couple cartoon" className="cartoon-img" />
         </div>
+
+        {/* 💖 Add your button here */}
+        <button
+          className="open-invitation-btn"
+          onClick={onNext}
+        >
+          បើកធៀប
+        </button>
+
       </div>
-    </section >
+    </section>
   )
 }
