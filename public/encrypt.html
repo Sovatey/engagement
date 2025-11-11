@@ -54,7 +54,7 @@
       }
 
       const encrypted = CryptoJS.AES.encrypt(name, secretKey).toString();
-      const link = `http://localhost:5173/engagement/?code=${encodeURIComponent(encrypted)}`;
+      const link = `https://sovatey.github.io/engagement/?code=${encodeURIComponent(encrypted)}`;
       
       document.getElementById("output").value =
         `Encrypted code:\n${encrypted}\n\nInvitation link:\n${link}`;
