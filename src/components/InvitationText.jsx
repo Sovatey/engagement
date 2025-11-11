@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import bg from "../assets/floral-bg-minimal.png";
 import "./InvitationText.css";
 import text from "../assets/text.png";
@@ -6,8 +6,107 @@ import Divider, { DateDisplay, CountdownImage } from "./components";
 import Timeline from "./Timeline";
 import Location from "./Location";
 import Footer from "./Footer";
+import hoverSound from "../assets/sounds/music.weba";
 
 export default function InvitationText() {
+  const audioRef = useRef(null);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [userInteracted, setUserInteracted] = useState(false);
+
+  // Auto-play when user first interacts with the page
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      setUserInteracted(true);
+      if (audioRef.current && !isPlaying && soundEnabled) {
+        audioRef.current
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+            console.log("Music started automatically");
+          })
+          .catch((e) => {
+            console.log("Auto-play blocked by browser:", e);
+          });
+
+        // Remove listeners after first successful interaction
+        document.removeEventListener("click", handleUserInteraction);
+        document.removeEventListener("touchstart", handleUserInteraction);
+        document.removeEventListener("keydown", handleUserInteraction);
+      }
+    };
+
+    // Add event listeners for user interaction
+    document.addEventListener("click", handleUserInteraction);
+    document.addEventListener("touchstart", handleUserInteraction);
+    document.addEventListener("keydown", handleUserInteraction);
+
+    return () => {
+      document.removeEventListener("click", handleUserInteraction);
+      document.removeEventListener("touchstart", handleUserInteraction);
+      document.removeEventListener("keydown", handleUserInteraction);
+    };
+  }, [isPlaying, soundEnabled]);
+
+  // Try to auto-play when user interacts and sound is enabled
+  useEffect(() => {
+    if (userInteracted && audioRef.current && !isPlaying && soundEnabled) {
+      const playAudio = async () => {
+        try {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log("Auto-play after interaction failed:", error);
+        }
+      };
+      playAudio();
+    }
+  }, [userInteracted, isPlaying, soundEnabled]);
+
+  const toggleSound = () => {
+    const newSoundEnabled = !soundEnabled;
+    setSoundEnabled(newSoundEnabled);
+
+    if (audioRef.current) {
+      if (newSoundEnabled && userInteracted) {
+        // Enable sound and try to play
+        audioRef.current
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((e) => console.log("Play failed:", e));
+      } else {
+        // Disable sound and pause
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
+
+  const togglePlayback = async () => {
+    if (!audioRef.current) return;
+
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        await audioRef.current.play();
+        setIsPlaying(true);
+        setUserInteracted(true);
+      }
+    } catch (error) {
+      console.log("Playback toggle failed:", error);
+    }
+  };
+
+  const handleAudioEnd = () => {
+    // Ensure looping
+    if (audioRef.current && soundEnabled) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().catch((e) => console.log("Loop play failed:", e));
+    }
+  };
+
   const hearts = Array.from({ length: 25 }).map((_, i) => ({
     id: i,
     left: Math.random() * 100,
@@ -18,6 +117,18 @@ export default function InvitationText() {
 
   return (
     <section className="invitation">
+      {/* Background Music - Auto play and loop */}
+      <audio
+        ref={audioRef}
+        preload="auto"
+        loop
+        onEnded={handleAudioEnd}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      >
+        <source src={hoverSound} type="audio/webm" />
+        <source src="/sounds/music.mp3" type="audio/mpeg" />
+      </audio>
       {/* Background */}
       <div
         className="invitation-bg"
@@ -54,31 +165,24 @@ export default function InvitationText() {
           padding: "4vmin 2vmin",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-start", // start at top
+          justifyContent: "flex-start",
           alignItems: "center",
           textAlign: "center",
-
-          background: "rgba(255, 255, 255, 0.5)", // mostly white, very bright
-          borderRadius: 0, // no radius
+          background: "rgba(255, 255, 255, 0.5)",
+          borderRadius: 0,
           border: "none",
           boxShadow: "none",
-
-          maxHeight: "90vh", // allow scroll if content is taller than viewport
-          overflowY: "auto", // enable vertical scrolling
-
-          transition: "background 0.3s ease", // smooth transition if needed
-          /* Hide scrollbar */
-          scrollbarWidth: "none", // Firefox
-          msOverflowStyle: "none", // IE 10+
+          maxHeight: "90vh",
+          overflowY: "auto",
+          transition: "background 0.3s ease",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
         }}
+        className="scroll-container"
       >
-        {/* <h2 style={{ fontSize: 'clamp(22px, 6vw, 48px)', color: '#333', marginBottom: '2vmin' }}>
-          សូមអញ្ជើញចូលរួមពិធីចូលចែចូវ
-        </h2> */}
-
         <h2
           style={{
-            fontSize: "clamp(20px, 3vw, 24px)", // ✅ smaller max and gentler scaling
+            fontSize: "clamp(20px, 3vw, 24px)",
             color: "#b8860b",
             marginBottom: "2vmin",
           }}
@@ -102,9 +206,8 @@ export default function InvitationText() {
           style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center", // ✅ centers vertically
+            alignItems: "center",
             gap: "20px",
-            // marginBottom: '2vmin',
           }}
         >
           {/* Groom side */}
@@ -113,7 +216,7 @@ export default function InvitationText() {
             <p style={{ fontSize: "1.1rem" }}>ព្រី ណុច</p>
           </div>
 
-          {/* Couple logo (smaller and centered) */}
+          {/* Couple logo */}
           <div
             style={{
               display: "flex",
