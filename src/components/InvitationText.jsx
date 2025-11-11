@@ -1,7 +1,6 @@
 import React from 'react';
 import bg from '../assets/floral-bg-minimal.png';
 import './InvitationText.css';
-import FloralBackgroundPage from './FloralBackgroundPage';
 import text from '../assets/text.png'
 import Divider, { DateDisplay,CountdownImage } from './components'
 import Timeline from './Timeline';
