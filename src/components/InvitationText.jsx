@@ -5,6 +5,8 @@ import FloralBackgroundPage from './FloralBackgroundPage';
 import text from '../assets/text.png'
 import Divider, { DateDisplay,CountdownImage } from './components'
 import Timeline from './Timeline';
+import Location from './Location';
+import Footer from './Footer';
 
 export default function InvitationText() {
   const hearts = Array.from({ length: 25 }).map((_, i) => ({
@@ -139,7 +141,8 @@ export default function InvitationText() {
 
         <CountdownImage targetDate="2025-12-29T07:00:00" />
         <Timeline/>
-        <CountdownImage targetDate="2025-12-29T07:00:00" />
+        <Location/>
+        <Footer/>
       </div>
 
     </section>

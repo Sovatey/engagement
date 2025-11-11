@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import couple from '../assets/couple.gif'
 import bg from '../assets/floral-bg-minimal.png'
 import './HeroSection.css'
@@ -6,6 +6,7 @@ import text from '../assets/text.png'
 import heart from '../assets/heart.gif'
 
 export default function HeroSection({ onNext }) {
+  const [guestName, setGuestName] = useState("ភ្ញៀវកិត្តិយស")
   useEffect(() => {
     const updateHeight = () => {
       const vh = window.innerHeight * 0.01
@@ -14,6 +15,24 @@ export default function HeroSection({ onNext }) {
     updateHeight()
     window.addEventListener('resize', updateHeight)
     return () => window.removeEventListener('resize', updateHeight)
+  }, [])
+  const secretKey = "NochTeyEngagement_ILoveYouToTheMoonAndBack"
+
+  useEffect(() => {
+    // get ?code= from URL
+    const code = new URLSearchParams(window.location.search).get('code')
+    console.log("Encrypted code from URL:", code)
+
+    if (code) {
+      try {
+        const decryptedBytes = CryptoJS.AES.decrypt(decodeURIComponent(code), secretKey)
+        const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8)
+        setGuestName(decryptedText)
+        console.log("Decrypted text:", decryptedText)
+      } catch (error) {
+        console.error('❌ Failed to decrypt:', error)
+      }
+    }
   }, [])
 
   const hearts = Array.from({ length: 25 }).map((_, i) => {
@@ -65,13 +84,13 @@ export default function HeroSection({ onNext }) {
           ព្រី ណុច <img src={heart} alt="heart" style={{ width: "30px", verticalAlign: "middle" }} /> ហែន សុវត្តី
         </h1>
 
-          <div className='invitation-text'>
-            <p3>
-              សូមគោរពអញ្ជើញ
-            </p3>
-          </div>
+        <div className='invitation-text'>
+          <p3>
+            សូមគោរពអញ្ជើញ
+          </p3>
+        </div>
         <div className="guest-box">
-          <span className="guest-name">ឡៅ លាងហ្វុង</span>
+          <span className="guest-name">{guestName}</span>
         </div>
 
         <div className="cartoon-container">

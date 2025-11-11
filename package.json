@@ -11,7 +11,9 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.20.7",
     "aos": "^2.3.4",
+    "crypto-js": "^4.2.0",
     "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
