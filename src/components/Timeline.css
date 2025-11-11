@@ -6,7 +6,7 @@
 
 .timeline-title {
   font-weight: bold;
-  font-size: 'clamp(20px, 3vw, 24px)';
+  font-size: "clamp(20px, 3vw, 24px)";
   text-align: center;
   margin-bottom: 16px;
   color: goldenrod;
@@ -20,7 +20,7 @@
 }
 
 .timeline-list::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 90px; /* fixed distance from left edge */
   top: 0;
@@ -78,4 +78,32 @@
   margin: 0;
   font-size: 0.9rem;
   color: #444;
+}
+/* Scroll triggered right-to-left animations */
+.slide-right-title {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s ease-out;
+}
+
+.timeline-item.slide-in-visible .slide-right-title {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger the animations */
+.timeline-item:nth-child(1).slide-in-visible .slide-right-title {
+  transition-delay: 0.1s;
+}
+
+.timeline-item:nth-child(2).slide-in-visible .slide-right-title {
+  transition-delay: 0.2s;
+}
+
+.timeline-item:nth-child(3).slide-in-visible .slide-right-title {
+  transition-delay: 0.3s;
+}
+
+.timeline-item:nth-child(4).slide-in-visible .slide-right-title {
+  transition-delay: 0.4s;
 }

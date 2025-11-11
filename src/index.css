@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: 'Preahvihear', sans-serif;
-  background: #E8F6FF;
+  font-family: "Preahvihear", sans-serif;
+  background: #e8f6ff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,20 +60,20 @@ body {
 }
 
 .couple-names {
-  font-family: 'Preahvihear', sans-serif;
+  font-family: "Preahvihear", sans-serif;
   font-size: 28px;
   margin: 10px 0;
 }
 
 .title {
-  font-family: 'Preahvihear', sans-serif;
+  font-family: "Preahvihear", sans-serif;
   font-size: 28px;
   margin-top: -80px;
 }
 
 .date {
   color: #6b7b85;
-  font-family: 'Preahvihear', sans-serif;
+  font-family: "Preahvihear", sans-serif;
 }
 
 .cartoon-img {
