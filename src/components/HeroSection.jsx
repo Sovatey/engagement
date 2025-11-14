@@ -17,26 +17,24 @@ export default function HeroSection({ onNext }) {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
   const secretKey = "NochTeyEngagement_ILoveYouToTheMoonAndBack";
+  
+useEffect(() => {
+  const code = new URLSearchParams(window.location.search).get('code');
+  if (code) {
+    try {
+      const decryptedBytes = CryptoJS.AES.decrypt(decodeURIComponent(code), secretKey);
+      const base64Text = decryptedBytes.toString(CryptoJS.enc.Utf8);
+      const guestName = CryptoJS.enc.Base64.parse(base64Text).toString(CryptoJS.enc.Utf8);
 
-  useEffect(() => {
-    // get ?code= from URL
-    const code = new URLSearchParams(window.location.search).get("code");
-    console.log("Encrypted code from URL:", code);
-
-    if (code) {
-      try {
-        const decryptedBytes = CryptoJS.AES.decrypt(
-          decodeURIComponent(code),
-          secretKey
-        );
-        const decryptedText = decryptedBytes.toString(CryptoJS.enc.Utf8);
-        setGuestName(decryptedText);
-        console.log("Decrypted text:", decryptedText);
-      } catch (error) {
-        console.error("❌ Failed to decrypt:", error);
-      }
+      setGuestName(guestName);
+    } catch (e) {
+      console.log("Error decrypting:", e);
     }
-  }, []);
+  }
+}, []);
+
+
+
 
   const hearts = Array.from({ length: 25 }).map((_, i) => {
     const left = Math.random() * 100;
