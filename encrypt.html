@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Guest Name Encryptor</title>
@@ -15,11 +16,13 @@
       height: 100vh;
       gap: 20px;
     }
+
     input {
       padding: 10px 15px;
       width: 300px;
       font-size: 18px;
     }
+
     button {
       padding: 10px 20px;
       font-size: 18px;
@@ -29,6 +32,7 @@
       border: none;
       border-radius: 6px;
     }
+
     textarea {
       width: 80%;
       height: 100px;
@@ -37,9 +41,10 @@
     }
   </style>
 </head>
+
 <body>
   <h2>🔒 Encrypt Guest Name</h2>
-  <input id="guestName" placeholder="Enter guest name (e.g. វត្តី & នារា)" />
+  <input id="guestName" placeholder="Enter guest name (e.g. ណុច & វត្តី)" />
   <button onclick="encrypt()">Encrypt</button>
   <textarea id="output" readonly placeholder="Encrypted code or link will appear here..."></textarea>
 
@@ -55,10 +60,13 @@
 
       const encrypted = CryptoJS.AES.encrypt(name, secretKey).toString();
       const link = `https://sovatey.github.io/engagement/?code=${encodeURIComponent(encrypted)}`;
-      
+
       document.getElementById("output").value =
-        `Encrypted code:\n${encrypted}\n\nInvitation link:\n${link}`;
+        `${link}`;
     }
+
+
   </script>
 </body>
+
 </html>
