@@ -49,26 +49,25 @@
   <textarea id="output" readonly placeholder="Encrypted code or link will appear here..."></textarea>
 
 <script>
-  const secretKey = "NochTeyEngagement_ILoveYouToTheMoonAndBack";
+const secretKey = "NochTeyEngagement_ILoveYouToTheMoonAndBack";
 
-  function encrypt() {
-    const name = document.getElementById("guestName").value.trim();
-    if (!name) {
-      alert("Please enter a guest name!");
-      return;
-    }
-
-    // Must convert Khmer → Base64 (IMPORTANT)
-    const utf8Name = CryptoJS.enc.Utf8.parse(name);
-    const base64Name = CryptoJS.enc.Base64.stringify(utf8Name);
-
-    // Encrypt Base64 text, NOT raw Khmer (IMPORTANT)
-    const encrypted = CryptoJS.AES.encrypt(base64Name, secretKey).toString();
-
-    const link = `https://sovatey.github.io/engagement/?code=${encodeURIComponent(encrypted)}`;
-    document.getElementById("output").value = link;
+function encrypt() {
+  const name = document.getElementById("guestName").value.trim();
+  if (!name) {
+    alert("Please enter a guest name!");
+    return;
   }
+
+  // JSON wrap is the safest method for Khmer
+  const json = JSON.stringify({ t: name });
+
+  const encrypted = CryptoJS.AES.encrypt(json, secretKey).toString();
+
+  const link = `https://sovatey.github.io/engagement/?code=${encodeURIComponent(encrypted)}`;
+  document.getElementById("output").value = link;
+}
 </script>
+
 
 </body>
 
