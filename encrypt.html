@@ -52,18 +52,24 @@
     const secretKey = "NochTeyEngagement_ILoveYouToTheMoonAndBack"
 
     function encrypt() {
-      const name = document.getElementById("guestName").value.trim();
-      if (!name) {
-        alert("Please enter a guest name!");
-        return;
-      }
+  const name = document.getElementById("guestName").value.trim();
+  if (!name) {
+    alert("Please enter a guest name!");
+    return;
+  }
 
-      const encrypted = CryptoJS.AES.encrypt(name, secretKey).toString();
-      const link = `https://sovatey.github.io/engagement/?code=${encodeURIComponent(encrypted)}`;
+  // FIX → Encode Khmer safely
+  const utf8Name = CryptoJS.enc.Utf8.parse(name);
+  const base64Name = CryptoJS.enc.Base64.stringify(utf8Name);
 
-      document.getElementById("output").value =
-        `${link}`;
-    }
+  // Encrypt base64 instead of plain Khmer  
+  const encrypted = CryptoJS.AES.encrypt(base64Name, secretKey).toString();
+
+  const link = `https://sovatey.github.io/engagement/?code=${encodeURIComponent(encrypted)}`;
+
+  document.getElementById("output").value = link;
+}
+
 
 
   </script>
