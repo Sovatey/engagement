@@ -206,7 +206,7 @@ export default function InvitationText() {
               លោកស្រី <span style={{ fontWeight: "bold" }}>យឹម សាមន</span>
             </p>
           </div>
-          <span style={{ width: "10px" }}></span>
+          <span style={{ width: "6px" }}></span>
           {/* Bride side */}
           <div className="animation-woman" style={{ textAlign: "start" }}>
             <p>
