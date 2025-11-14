@@ -33,7 +33,6 @@
   transform: translateY(5vh);
 }
 
-
 /* TITLE */
 .title {
   font-size: clamp(22px, 6vw, 48px);
@@ -48,16 +47,15 @@
   justify-content: center;
   align-items: center;
   margin: 0.2vmin 0; /* smaller vertical margin */
-  padding: 0;        /* remove any padding if there was any */
+  padding: 0; /* remove any padding if there was any */
 }
 
 .couple-logo {
-  width: 55%;        /* slightly smaller */
+  width: 55%; /* slightly smaller */
   max-width: 180px;
   height: auto;
   transition: transform 0.3s ease;
-  margin: 0
-
+  margin: 0;
 }
 .couple-logo:hover {
   transform: scale(1.05);
@@ -66,7 +64,7 @@
 /* COUPLE NAMES */
 .couple-names {
   font-size: clamp(18px, 5vw, 40px);
-  color: #444;
+  color: #4d4e50;
   font-weight: 600;
   margin: 1vmin 0;
   display: flex;
@@ -78,14 +76,14 @@
 
 /* GUEST BOX */
 .guest-box {
-  width: 90%;           /* mobile-friendly width */
-  max-width: 300px;     /* limits size on desktop */
-  height: 50px;         /* fixed height so it doesn’t grow too big */
-  padding: 0 10px;      /* small horizontal padding */
+  width: 90%; /* mobile-friendly width */
+  max-width: 300px; /* limits size on desktop */
+  height: 50px; /* fixed height so it doesn’t grow too big */
+  padding: 0 10px; /* small horizontal padding */
   background: rgba(255, 255, 255, 0.9);
   border: 2px solid #d4af37;
   border-radius: 12px;
-  font-size: 16px;      /* fixed font size */
+  font-size: 16px; /* fixed font size */
   font-weight: bold;
   color: #b8860b;
   margin-top: 16px;
@@ -99,8 +97,8 @@
   font-size: clamp(14px, 4vw, 20px);
   color: #b8860b;
   font-weight: 500;
-   margin-bottom: -10px;
-   margin-top: 10%;
+  margin-bottom: -10px;
+  margin-top: 10%;
   text-align: center;
 }
 
@@ -177,7 +175,7 @@
 
 .open-invitation-btn {
   margin-top: 10px;
-  background-color: #94B0C8;
+  background-color: #94b0c8;
   border: none;
   border-radius: 25px;
   padding: 6px 24px;
@@ -187,7 +185,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease-in-out;
   animation: pulseZoom 2s infinite ease-in-out;
-  font-family: 'Preahvihear', sans-serif;
+  font-family: "Preahvihear", sans-serif;
 }
 
 /* Slight zoom on hover */

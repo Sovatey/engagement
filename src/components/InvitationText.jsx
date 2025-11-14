@@ -162,7 +162,7 @@ export default function InvitationText() {
           maxWidth: "500px",
           minHeight: "100vh",
           margin: "0 auto",
-          padding: "4vmin 2vmin",
+          padding: "4vmin 3vmin",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start",
@@ -187,17 +187,54 @@ export default function InvitationText() {
             marginBottom: "2vmin",
           }}
         >
-          មានកិត្តិយសសូមគោរពអញ្ជើញ
+          សិរីមង្គលពិធីចូលចែចូវ
         </h2>
-        <Divider />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "20px",
+          }}
+        >
+          {/* Groom side */}
+          <div className="animation-man" style={{ textAlign: "start" }}>
+            <p>
+              លោក <span style={{ fontWeight: "bold" }}>ប្រាក់ សុខា</span>
+            </p>
+            <p>
+              លោកស្រី <span style={{ fontWeight: "bold" }}>យឹម សាមន</span>
+            </p>
+          </div>
+          <span style={{ width: "10px" }}></span>
+          {/* Bride side */}
+          <div className="animation-woman" style={{ textAlign: "start" }}>
+            <p>
+              លោក <span style={{ fontWeight: "bold" }}>ហាយ វលក្ខណ៍</span>
+            </p>
+            <p>
+              លោកស្រី <span style={{ fontWeight: "bold" }}>គាត ដាវី</span>
+            </p>
+          </div>
+        </div>
+        {/* <h2
+          style={{
+            fontSize: "clamp(16px, 3vw, 16px)",
+            color: "#b8860b",
+            marginBottom: "2vmin",
+          }}
+        >
+          យើងខ្ញុំមានកិត្តិយស​ <br />
+          សូមគោរពអញ្ជើញ
+        </h2> */}
         <p
           style={{
-            fontSize: "clamp(14px, 3vw, 14px)",
+            fontSize: "clamp(12px, 3vw, 12px)",
             margin: " 0",
             color: "#444",
           }}
         >
-          ឯកឧត្តម អ្នកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា
+          សូមគោរពអញ្ជើញ ឯកឧត្តម អ្នកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា
           និងញាតិមិត្តអញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស
           ដើម្បីប្រសិទ្ធិពរជ័យសិរីសួស្ដី ជ័យមង្គល ក្នុងពិធីចូលចែចូវ
           កូនប្រុស-ស្រី របស់យើងទាំងពីរ។
@@ -223,6 +260,7 @@ export default function InvitationText() {
               alignItems: "center",
               justifyContent: "center",
             }}
+            className="animation"
           >
             <img
               src={text}
@@ -256,6 +294,7 @@ export default function InvitationText() {
           ត្រូវនឹងថ្ងៃទី ១០ កើត ខែបុស្ស ឆ្នាំម្សាញ់ សប្ដស័ក ព.ស ២៥៦៩ ស្ថិតនៅ{" "}
           <b>ភោជនីយដ្ឋានវ័នម៉រ (បន្ទប់ នាងសួស្ដី)</b>
         </p>
+        <Divider />
         <div className="animation">
           <CountdownImage targetDate="2025-12-29T07:00:00" />
         </div>
