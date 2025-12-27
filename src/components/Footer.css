@@ -7,8 +7,9 @@
   color: #202020;
   position: relative; /* or fixed if you want it always at bottom */
   bottom: 0;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); */
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 .footer p {
@@ -18,7 +19,7 @@
 
 .footer small {
   display: block;
-  margin-top: 4px;
+  margin-top:4px;
   font-size: clamp(12px, 1.5vw, 14px);
   color: #666;
 }

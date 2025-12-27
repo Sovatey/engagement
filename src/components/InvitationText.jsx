@@ -174,12 +174,17 @@ export default function InvitationText() {
           boxShadow: "none",
           maxHeight: "90vh",
           overflowY: "auto",
-          transition: "background 0.3s ease",
+
+          /* 🔥 Add these fixes */
+          overflowX: "hidden",
+          touchAction: "pan-y",
+
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}
         className="scroll-container"
       >
+
         <h2
           style={{
             fontSize: "clamp(20px, 3vw, 24px)",
@@ -198,7 +203,7 @@ export default function InvitationText() {
           }}
         >
           {/* Groom side */}
-          <div className="animation-man" style={{ textAlign: "start" }}>
+          <div className="animation-man" style={{ textAlign: "start", fontSize: "0.8rem" }}>
             <p>
               លោក <span style={{ fontWeight: "bold" }}>ប្រាក់ សុខា</span>
             </p>
@@ -208,7 +213,7 @@ export default function InvitationText() {
           </div>
           <span style={{ width: "6px" }}></span>
           {/* Bride side */}
-          <div className="animation-woman" style={{ textAlign: "start" }}>
+          <div className="animation-woman" style={{ textAlign: "start", fontSize: "0.8rem" }}>
             <p>
               លោក <span style={{ fontWeight: "bold" }}>ហាយ វលក្ខណ៍</span>
             </p>
@@ -249,8 +254,8 @@ export default function InvitationText() {
         >
           {/* Groom side */}
           <div className="animation-man" style={{ textAlign: "center" }}>
-            <p style={{ fontWeight: "bold", color: "#b8860b" }}>កូនប្រុស</p>
-            <p style={{ fontSize: "1.1rem" }}>ព្រី ណុច</p>
+            <p style={{ fontWeight: "bold", color: "#b8860b",fontSize: "0.95rem"  }}>កូនប្រុស</p>
+            <p style={{ fontSize: "0.95rem" }}>ព្រី ណុច</p>
           </div>
 
           {/* Couple logo */}
@@ -276,8 +281,8 @@ export default function InvitationText() {
 
           {/* Bride side */}
           <div className="animation-woman" style={{ textAlign: "center" }}>
-            <p style={{ fontWeight: "bold", color: "#b8860b" }}>កូនស្រី</p>
-            <p style={{ fontSize: "1.1rem" }}>ហែន សុវត្តី</p>
+            <p style={{ fontWeight: "bold", color: "#b8860b",fontSize: "0.95rem"  }}>កូនស្រី</p>
+            <p style={{ fontSize: "0.95rem" }}>ហែន សុវត្តី</p>
           </div>
         </div>
 
@@ -303,9 +308,10 @@ export default function InvitationText() {
         <div className="animation">
           <Location />
         </div>
-        <div className="animation">
+        <Footer />
+        {/* <div className="animation">
           <Footer />
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -23,15 +23,21 @@ useEffect(() => {
   if (code) {
     try {
       const decryptedBytes = CryptoJS.AES.decrypt(decodeURIComponent(code), secretKey);
-      const base64Text = decryptedBytes.toString(CryptoJS.enc.Utf8);
-      const guestName = CryptoJS.enc.Base64.parse(base64Text).toString(CryptoJS.enc.Utf8);
+      const json = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
-      setGuestName(guestName);
+      if (!json) {
+        console.log("Empty decrypt!");
+        return;
+      }
+
+      const obj = JSON.parse(json);
+      setGuestName(obj.t);
     } catch (e) {
       console.log("Error decrypting:", e);
     }
   }
 }, []);
+
 
 
 

@@ -117,7 +117,7 @@ export function DateDisplay() {
                 {/* Time with lines */}
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px" }}>
                     <div style={{ width: "100px", height: "2px", background: "goldenrod" }} />
-                    <div>ម៉ោង ៧ ព្រឹក</div>
+                    <div>ម៉ោង ៨ ព្រឹក</div>
                     <div style={{ width: "100px", height: "2px", background: "goldenrod" }} />
                 </div>
             </div>
