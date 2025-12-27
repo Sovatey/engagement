@@ -131,6 +131,7 @@ export function DateDisplay() {
 
 export function CountdownImage({ targetDate }) {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -139,6 +140,7 @@ export function CountdownImage({ targetDate }) {
 
       if (distance <= 0) {
         clearInterval(interval);
+        setIsFinished(true);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
@@ -180,7 +182,19 @@ export function CountdownImage({ targetDate }) {
           whiteSpace: "nowrap",
         }}
       >
-        {`${timeLeft.days}ថ្ងៃ : ${timeLeft.hours}ម៉ោង : ${timeLeft.minutes}នាទី : ${timeLeft.seconds}វិនាទី`}
+        {/* {`${timeLeft.days}ថ្ងៃ : ${timeLeft.hours}ម៉ោង : ${timeLeft.minutes}នាទី : ${timeLeft.seconds}វិនាទី`} */}
+         {isFinished ? (
+          <span className="happy-text">
+            <span>💍 Happy Engagement Day! 💖</span>
+            <br />
+            <span>29-12-2025</span>
+          </span>
+        ) : (
+          <span>
+            {timeLeft.days}ថ្ងៃ : {timeLeft.hours}ម៉ោង : {timeLeft.minutes}នាទី
+            : {timeLeft.seconds}វិនាទី
+          </span>
+        )}
       </div>
     </div>
   );
